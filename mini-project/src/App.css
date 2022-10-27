@@ -13,7 +13,7 @@
   letter-spacing: 0.06em;
   color: #ffffff;
 }
-.TextHeader span {
+span {
   color: #ff4f4f;
 }
 .TextSubHeader {
@@ -45,11 +45,11 @@
 .leftNavbar {
   position: absolute;
   width: 75px;
-  left: 0;
   top: 0px;
   bottom: 0;
-
-  /* secondary color */
-
   background: #120200;
+}
+
+hr.line {
+  border-top: 4px solid #de7979;
 }
