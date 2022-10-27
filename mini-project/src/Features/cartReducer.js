@@ -10,18 +10,24 @@ export const cartReducer = createSlice({
     setCarts: (state, action) => {
       state.carts = action.payload;
     },
-    handleAddToCart: async (state, action) => {
-      const newCart = {
-        objects: {
+    handleAddToCart: (state, action) => {
+      if(state.carts.id_products === action.payload){
+        const updateCart ={
+          
+        }
+      }else{
+        const newCart = {
+          id:  1,
           id_products: action.payload.id_products,
           quantity: 1,
           subtotal: action.payload.price,
           table: 4,
-          total: 234599,
-        },
+          total: action.payload.price,
       };
-      await client.post("/", newCart);
-      //state.carts = [...state.carts, newCart];
+       client.post("/", newCart);
+      state.carts = [...state.carts, newCart];
+      }
+     
     },
   },
 });
