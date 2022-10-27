@@ -16,7 +16,7 @@ const HomePage = () => {
               <div className="TextSubHeader">We deliver 100% Fresh Food and drink. You can order right now!</div>
               <Link to={"/menu"}>
                 <button className="btnOurmenu">
-                  OUR MENU <i class="bi bi-book-half"></i>
+                  OUR MENU <i className="bi bi-card-checklist"></i>
                 </button>
               </Link>
             </Col>
