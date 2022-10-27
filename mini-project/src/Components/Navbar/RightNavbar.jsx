@@ -18,8 +18,7 @@ export const RightNavbar = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-  console.log(carts);
+  }, [loading]);
 
   return (
     <div className="d-flex flex-column flex-shrink-0 p-4 text-white" style={{ width: "400px", backgroundColor: "#120200" }}>
@@ -31,7 +30,7 @@ export const RightNavbar = () => {
       ) : (
         carts?.map((cart) => (
           <div className="mt-2" key={cart.id}>
-            {cart.product.map((item) => (
+            {/* {cart.product.map((item) => (
               <div className="d-flex flex-row" key={item.id_products}>
                 <div className="col-md-4">
                   <img src={"Assets/img/" + item.image_products} className="img-fluid rounded border border-2" />
@@ -41,7 +40,7 @@ export const RightNavbar = () => {
                     <span>{item.name}</span>
                   </h6>
                   <p>Rp. {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</p>
-                </div>
+                </div> */}
                 <div className="col-md-1">
                   <Badge bg="secondary">{cart.quantity}</Badge>
                 </div>
@@ -57,8 +56,8 @@ export const RightNavbar = () => {
                     </div>
                   </div>
                 </div> */}
-              </div>
-            ))}
+              {/* </div> */}
+            {/* // ))} */}
           </div>
         ))
       )}
