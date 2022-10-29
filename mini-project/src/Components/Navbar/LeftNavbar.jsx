@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export const LeftNavbar = ({ handleClickCategory }) => {
   return (
     <div className="d-flex flex-column flex-shrink-0 pt-3 pe-0 ps-0 text-white" style={{ width: "70px", backgroundColor: "#120200" }}>
+      <Col>
       <Link to="/">
         <Image src="/Assets/img/Logo.png" style={{ width: "100%" }} />
       </Link>
@@ -14,6 +15,7 @@ export const LeftNavbar = ({ handleClickCategory }) => {
       <Link to="/waiting-list">
         <Image src="/Assets/icons/wait.png" style={{ width: "100%", padding: "20px 15px" }} />
       </Link>
+      </Col>
     </div>
   );
 };

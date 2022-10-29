@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { client } from "../api";
+import { client, getCarts } from "../api";
 
 export const cartReducer = createSlice({
   name: "cartlist",
@@ -10,27 +10,23 @@ export const cartReducer = createSlice({
     setCarts: (state, action) => {
       state.carts = action.payload;
     },
-    handleAddToCart: (state, action) => {
-      if(state.carts.id_products === action.payload){
-        const updateCart ={
-          
-        }
-      }else{
-        const newCart = {
-          id:  1,
-          id_products: action.payload.id_products,
-          quantity: 1,
-          subtotal: action.payload.price,
-          table: 4,
-          total: action.payload.price,
-      };
-       client.post("/", newCart);
-      state.carts = [...state.carts, newCart];
-      }
-     
-    },
-  },
-});
+    // handleAddToCart: (state, action) => {
+    //   // console.log(action.payload)
+    //   // if()
+    //   const newProduct = {
+    //     id_products: action.payload.id_products,
+    //     quantity: 1,
+    //     subtotal: action.payload.price,
+    //     table: 4,
+    //     tax: action.payload.price * 0.1,
+    //     total: action.payload.price * 0.1 + action.payload.price,
+    //   };
+    //   client.post("/", newProduct)
+    //     .then((res) => state.carts.push(res.data.insert_nafa_resto_cart.returning))
+
+    // }
+  }
+})
 
 export const { setCarts, handleAddToCart } = cartReducer.actions;
 export default cartReducer.reducer;
