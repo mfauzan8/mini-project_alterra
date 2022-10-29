@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Spinner, Badge, Container } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { getCarts } from "../../api";
-import { setCarts } from "../../Features/cartReducer";
+import React from "react";
+import { Badge, Container, Image } from "react-bootstrap";
 
 export const RightNavbar = ({ order }) => {
 
@@ -18,8 +15,8 @@ export const RightNavbar = ({ order }) => {
             {cart.product.map((item) => (
               <Container key={item.id_products} fluid>
                 <div className="d-flex flex-row align-items-center" >
-                  <div className="col-md-5 xs-3">
-                    <img src={"Assets/img/" + item.image_products} className="img-fluid rounded border border-2" />
+                  <div className="col-md-4 xs-3">
+                    <Image src={"Assets/img/" + item.image_products} className="img-fluid rounded border border-2" />
                   </div>
                   <div className="col ms-3">
                     <h6>

@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts } from "../api";
+import { getProducts, client } from "../api";
 import { setProducts } from "../Features/productReducer";
-import { client, getCarts } from "../api";
-import { setCarts } from "../Features/cartReducer";
 import AllProductPage from "../Components/AllProductPage";
 
 const AllProductPageContainer = () => {
   const products = useSelector((state) => state.productlist.products);
-  const carts = useSelector((state) => state.cartlist.carts);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState(products);
   const [order, setOrder] = useState([]);
+  const [searchProducts, setSearchWords] = useState("");
 
 
   useEffect(() => {
@@ -69,9 +67,25 @@ const AllProductPageContainer = () => {
           setOrder((prevState) => [...prevState, res.data.insert_nafa_resto_cart.returning[0]])
         })
     }
-
   }
-  return <AllProductPage loading={loading} handleClickCategory={handleClickCategory} category={category} handleAddToCart={handleAddToCart} order={order} />;
+
+  useEffect(() => {
+    const loweredSearchedWords = searchProducts.toLowerCase();
+    const updatedProduct = [];
+    if (searchProducts !== "") {
+      products.forEach((product) => {
+        const loweredProductName = product.name.toLowerCase();
+        if (loweredProductName.includes(loweredSearchedWords)) {
+          updatedProduct.push(product);
+        }
+      });
+      setCategory(updatedProduct);
+    } else {
+      setCategory(products);
+    }
+  }, [products, searchProducts]);
+
+  return <AllProductPage loading={loading} handleClickCategory={handleClickCategory} category={category} handleAddToCart={handleAddToCart} order={order} searchProducts={searchProducts} setSearchWords={setSearchWords} />;
 };
 
 export default AllProductPageContainer;

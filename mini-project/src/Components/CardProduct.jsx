@@ -1,11 +1,13 @@
 import { Card, Col, Row, Spinner, Form } from "react-bootstrap";
 
-export const CardProduct = ({ loading, category, handleAddToCart, searchWords, setSearchWords }) => {
+export const CardProduct = ({ loading, category, handleAddToCart, searchProducts, setSearchWords }) => {
 
   return (
     <>
       <div className="mt-4 mb-4">
-        <Form.Control type="searchData" placeholder="Search Food or Drink" style={{ width: "50%" }} className="shadow rounded-pill" value={searchWords} onChange={(ev) => setSearchWords(ev.currentTarget.value)} />
+        <Form.Control type="searchData" placeholder="Search Food or Drink" style={{ width: "50%" }}
+          className="shadow rounded-pill" value={searchProducts} onChange={(ev) => setSearchWords(ev.currentTarget.value)}
+        />
       </div>
       <Row>
         {loading ? (
