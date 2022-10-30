@@ -58,7 +58,6 @@ const AllProductPageContainer = () => {
         id_products: value.id_products,
         quantity: 1,
         subtotal: value.price,
-        table: 4,
         tax: value.price * 0.1,
         total: value.price * 0.1 + value.price,
       };
@@ -85,7 +84,24 @@ const AllProductPageContainer = () => {
     }
   }, [products, searchProducts]);
 
-  return <AllProductPage loading={loading} handleClickCategory={handleClickCategory} category={category} handleAddToCart={handleAddToCart} order={order} searchProducts={searchProducts} setSearchWords={setSearchWords} />;
+  const deleteById = async (value) => {
+    const idProduct = value[0].id
+    await client.delete(`${idProduct}`)
+    const deleteItem = order.filter((item) => item.id !== idProduct)
+    setOrder(deleteItem)
+  }
+
+  return <AllProductPage
+    loading={loading}
+    handleClickCategory={handleClickCategory}
+    category={category}
+    handleAddToCart={handleAddToCart}
+    order={order}
+    setOrder={setOrder}
+    searchProducts={searchProducts}
+    setSearchWords={setSearchWords}
+    deleteById={deleteById}
+  />;
 };
 
 export default AllProductPageContainer;
