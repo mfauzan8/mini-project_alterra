@@ -53,3 +53,38 @@ span {
 hr.line {
   border-top: 4px solid #de7979;
 }
+
+.btn-cart{
+  border-radius: 5px;
+  margin-bottom: 0;
+}
+.btn-quantity{
+  color: #fffefe;
+  background-color: rgb(98, 32, 32);
+  font-weight:600;
+  border-radius: 5px;
+}
+
+.total{
+  display: flex;
+  flex-direction:column;
+  background-color: #4F0000;
+  height: 113px;
+  padding: 10px;
+  border-radius: 15px;
+  font-size: 15px;
+  line-height: 12px;
+}
+.btn-total{
+  background-color: #4F0000;
+  border-radius: 15px;
+  color: white;
+  padding: 5px;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.product-details{
+  font-size: 13px;
+  line-height: 16px
+}
