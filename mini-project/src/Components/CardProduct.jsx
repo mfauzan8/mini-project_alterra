@@ -1,4 +1,4 @@
-import { Card, Col, Row, Spinner, Form } from "react-bootstrap";
+import { Card, Col, Row, Spinner, Form, CardGroup } from "react-bootstrap";
 
 export const CardProduct = ({ loading, category, handleAddToCart, searchProducts, setSearchWords }) => {
 
@@ -6,7 +6,7 @@ export const CardProduct = ({ loading, category, handleAddToCart, searchProducts
     <>
       <div className="mt-4 mb-4">
         <Form.Control type="searchData" placeholder="Search Food or Drink" style={{ width: "50%" }}
-          className="shadow rounded-pill" value={searchProducts} onChange={(ev) => setSearchWords(ev.currentTarget.value)}
+          className="shadow-lg rounded-pill" value={searchProducts} onChange={(ev) => setSearchWords(ev.currentTarget.value)}
         />
       </div>
       <Row>

@@ -4,15 +4,35 @@ import { CardProduct } from "./CardProduct";
 import { LeftNavbar } from "./Navbar/LeftNavbar";
 import { RightNavbar } from "./Navbar/RightNavbar";
 
-const AllProductPage = ({ handleClickCategory, loading, category, handleAddToCart, order, searchProducts, setSearchWords }) => {
+const AllProductPage = (
+  {
+    handleClickCategory,
+    loading, category,
+    handleAddToCart,
+    order, searchProducts,
+    setSearchWords,
+    setOrder,
+    deleteById
+  }) => {
+
   return (
     <Container fluid>
       <Row>
         <LeftNavbar handleClickCategory={handleClickCategory} />
         <Col>
-          <CardProduct loading={loading} category={category} handleAddToCart={handleAddToCart} searchProducts={searchProducts} setSearchWords={setSearchWords} />
+          <CardProduct
+            loading={loading}
+            category={category}
+            handleAddToCart={handleAddToCart}
+            searchProducts={searchProducts}
+            setSearchWords={setSearchWords}
+          />
         </Col>
-        <RightNavbar order={order} />
+        <RightNavbar
+          order={order}
+          setOrder={setOrder}
+          deleteById={deleteById}
+        />
       </Row>
     </Container>
   );
