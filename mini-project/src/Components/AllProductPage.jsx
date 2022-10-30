@@ -12,7 +12,9 @@ const AllProductPage = (
     order, searchProducts,
     setSearchWords,
     setOrder,
-    deleteById
+    deleteById,
+    handleBtnPlus,
+    handleBtnMinus,
   }) => {
 
   return (
@@ -32,6 +34,8 @@ const AllProductPage = (
           order={order}
           setOrder={setOrder}
           deleteById={deleteById}
+          handleBtnPlus={handleBtnPlus}
+          handleBtnMinus={handleBtnMinus}
         />
       </Row>
     </Container>
