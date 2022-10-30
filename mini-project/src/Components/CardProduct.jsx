@@ -16,7 +16,7 @@ export const CardProduct = ({ loading, category, handleAddToCart, searchProducts
           category.map((product) => (
             <Col md={3} xs={10} key={product.id_products}>
               <Card onClick={() => handleAddToCart(product)} style={{ backgroundColor: "#E3E0E0", height: "87%" }}>
-                <Card.Img variant="top" src={"Assets/img/" + product.image_products} style={{ maxHeight: "50%" }} />
+                <Card.Img variant="top" src={"Assets/img/" + product.image_products} style={{ maxHeight: "50%", padding: "3px" }} />
                 <Card.Body>
                   <Card.Title>{product.name}</Card.Title>
                   <Card.Text>{product.details_product}</Card.Text>
