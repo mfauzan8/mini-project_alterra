@@ -21,3 +21,8 @@ export const getCarts = async () => {
   const response = await client.get("/");
   return response.data.nafa_resto_cart;
 };
+
+export const getTableOrder = async () => {
+  const response = await client.get("/");
+  return response.data.nafa_resto_table;
+};

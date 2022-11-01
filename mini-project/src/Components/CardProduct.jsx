@@ -6,7 +6,7 @@ export const CardProduct = ({ loading, category, handleAddToCart, searchProducts
     <>
       <div className="mt-4 mb-4">
         <Form.Control type="searchData" placeholder="Search Food or Drink" style={{ width: "50%" }}
-          className="shadow-lg rounded-pill" value={searchProducts} onChange={(ev) => setSearchWords(ev.currentTarget.value)}
+          className="shadow-lg rounded-pill " value={searchProducts} onChange={(ev) => setSearchWords(ev.currentTarget.value)}
         />
       </div>
       <Row>
@@ -14,7 +14,7 @@ export const CardProduct = ({ loading, category, handleAddToCart, searchProducts
           <Spinner animation="grow" />
         ) : (
           category.map((product) => (
-            <Col md={3} xs={10} key={product.id_products}>
+            <Col xl={3} md={12} xs={10} key={product.id_products}>
               <Card onClick={() => handleAddToCart(product)} style={{ backgroundColor: "#E3E0E0", height: "87%" }}>
                 <Card.Img variant="top" src={"Assets/img/" + product.image_products} style={{ maxHeight: "50%", padding: "3px" }} />
                 <Card.Body>

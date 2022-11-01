@@ -26,8 +26,20 @@ export const RightNavbar =
     }
 
     const handleOrder = async () => {
+      const dataTable = {
+        no_table: table,
+        total_bayar: sumTotal
+      }
+      await client.post("/table", dataTable)
+
+      const dataOrder = order.map((o) => ({ ...o, no_table: table }))
+      console.log(dataOrder)
+      const dataOrderList = {
+        objects: dataOrder
+      }
+      await client.post("/orderlist", dataOrderList)
+
       await client.delete("/")
-        .then((res) => console.log(res))
       setOrder([])
     }
 
@@ -42,7 +54,8 @@ export const RightNavbar =
           />
         </div>
 
-        <div className="overflow-auto">
+        <Container style={{height:"49vh"}}>
+        <div className="overflow-auto h-100">
           {
             order.map((cart) => (
               <div className="mt-2 " key={cart.id}>
@@ -74,6 +87,9 @@ export const RightNavbar =
             ))
           }
         </div>
+        </Container>
+
+
         <div className="d-flex flex-column m-2 mt-4">
           <div className="total">
             <p>Subtotal : Rp.{sumSubTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} </p>

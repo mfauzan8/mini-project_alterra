@@ -19,9 +19,9 @@ const AllProductPage = (
 
   return (
     <Container fluid>
-      <Row>
+      <Row style={{height:'100vh'}}>
         <LeftNavbar handleClickCategory={handleClickCategory} />
-        <Col>
+        <Col style={{height:'100vh', overflowY: 'scroll'}}>
           <CardProduct
             loading={loading}
             category={category}
