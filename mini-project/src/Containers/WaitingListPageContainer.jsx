@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getTableOrder } from "../api";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import WaitingListPage from "../Components/WaitingListPage";
@@ -6,6 +7,8 @@ import WaitingListPage from "../Components/WaitingListPage";
 const WaitingListPageContainer = () => {
   const products = useSelector((state) => state.productlist.products);
   const [category, setCategory] = useState(products);
+  const [tables, setTables] = useState([]);
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate();
 
   const handleClickCategory = (e) => {
@@ -17,7 +20,19 @@ const WaitingListPageContainer = () => {
       setCategory(products);
     }
   };
-  return <WaitingListPage handleClickCategory={handleClickCategory} />;
+
+  useEffect(() => {
+    getTableOrder()
+      .then((res) => {
+        setTables(res);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [loading]);
+
+  return <WaitingListPage handleClickCategory={handleClickCategory} loading={loading} tables={tables} />;
 };
 
 export default WaitingListPageContainer;

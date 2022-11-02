@@ -12,14 +12,16 @@ const AllProductPage = (
     order, searchProducts,
     setSearchWords,
     setOrder,
-    deleteById
+    deleteById,
+    handleBtnPlus,
+    handleBtnMinus,
   }) => {
 
   return (
     <Container fluid>
-      <Row>
+      <Row style={{height:'100vh'}}>
         <LeftNavbar handleClickCategory={handleClickCategory} />
-        <Col>
+        <Col style={{height:'100vh', overflowY: 'scroll'}}>
           <CardProduct
             loading={loading}
             category={category}
@@ -32,6 +34,8 @@ const AllProductPage = (
           order={order}
           setOrder={setOrder}
           deleteById={deleteById}
+          handleBtnPlus={handleBtnPlus}
+          handleBtnMinus={handleBtnMinus}
         />
       </Row>
     </Container>
