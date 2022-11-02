@@ -144,6 +144,46 @@ const AllProductPageContainer = () => {
     }
   }
 
+  const handleBtnPlus = async (value) => {
+    let findData = order.find(({ id_products }) => id_products === value.id_products);
+    const updateCart = {
+      id_products: findData.id_products,
+      quantity: findData.quantity + 1,
+      subtotal: findData.subtotal / findData.quantity * (findData.quantity + 1),
+      tax: findData.tax / findData.quantity * (findData.quantity + 1),
+      total: findData.total / findData.quantity * (findData.quantity + 1)
+    }
+    await client.put(`${findData.id_products}`, updateCart)
+      .then((res) => {
+        const findNewData = order.map((i) => i.id === res.data.update_nafa_resto_cart.returning[0].id ? res.data.update_nafa_resto_cart.returning[0] : i)
+        setOrder(findNewData)
+      }
+      )
+  }
+
+  const handleBtnMinus = async (value) => {
+    let findData = order.find(({ id_products }) => id_products === value.id_products);
+    const updateCart = {
+      id_products: findData.id_products,
+      quantity: findData.quantity - 1,
+      subtotal: findData.subtotal / findData.quantity * (findData.quantity - 1),
+      tax: findData.tax / findData.quantity * (findData.quantity - 1),
+      total: findData.total / findData.quantity * (findData.quantity - 1)
+    }
+    if (value.quantity > 1) {
+      await client.put(`${findData.id_products}`, updateCart)
+        .then((res) => {
+          const findNewData = order.map((i) => i.id === res.data.update_nafa_resto_cart.returning[0].id ? res.data.update_nafa_resto_cart.returning[0] : i)
+          setOrder(findNewData)
+        }
+        )
+    } else {
+      await client.delete(`${value.id}`)
+      const deleteItem = order.filter((item) => item.id !== value.id)
+      setOrder(deleteItem)
+    }
+  }
+
   return <AllProductPage
     loading={loading}
     handleClickCategory={handleClickCategory}
