@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts, client } from "../api";
 import { setProducts } from "../Features/productReducer";
+import { toast } from "react-toastify"
 import AllProductPage from "../Components/AllProductPage";
 
 const AllProductPageContainer = () => {
@@ -50,6 +51,10 @@ const AllProductPageContainer = () => {
       await client.put(`${findData.id_products}`, updateCart)
         .then((res) => {
           const findNewData = order.map((i) => i.id === res.data.update_nafa_resto_cart.returning[0].id ? res.data.update_nafa_resto_cart.returning[0] : i)
+          toast.info('success update product quantity', {
+            position: "top-center",
+            autoClose: 3000,
+          })
           setOrder(findNewData)
         }
         )
@@ -63,6 +68,10 @@ const AllProductPageContainer = () => {
       };
       await client.post("/", newProduct)
         .then((res) => {
+          toast.success('success add product to cart', {
+            position: "top-center",
+            autoClose: 3000,
+          })
           setOrder((prevState) => [...prevState, res.data.insert_nafa_resto_cart.returning[0]])
         })
     }
@@ -88,7 +97,51 @@ const AllProductPageContainer = () => {
     const idProduct = value.id
     await client.delete(`${idProduct}`)
     const deleteItem = order.filter((item) => item.id !== idProduct)
+    toast.success('success delete product', {
+      autoClose: 3000,
+    })
     setOrder(deleteItem)
+
+  }
+
+  const handleBtnPlus = async (value) => {
+    let findData = order.find(({ id_products }) => id_products === value.id_products);
+    const updateCart = {
+      id_products: findData.id_products,
+      quantity: findData.quantity + 1,
+      subtotal: findData.subtotal / findData.quantity * (findData.quantity + 1),
+      tax: findData.tax / findData.quantity * (findData.quantity + 1),
+      total: findData.total / findData.quantity * (findData.quantity + 1)
+    }
+    await client.put(`${findData.id_products}`, updateCart)
+      .then((res) => {
+        const findNewData = order.map((i) => i.id === res.data.update_nafa_resto_cart.returning[0].id ? res.data.update_nafa_resto_cart.returning[0] : i)
+        setOrder(findNewData)
+      }
+      )
+  }
+
+  const handleBtnMinus = async (value) => {
+    let findData = order.find(({ id_products }) => id_products === value.id_products);
+    const updateCart = {
+      id_products: findData.id_products,
+      quantity: findData.quantity - 1,
+      subtotal: findData.subtotal / findData.quantity * (findData.quantity - 1),
+      tax: findData.tax / findData.quantity * (findData.quantity - 1),
+      total: findData.total / findData.quantity * (findData.quantity - 1)
+    }
+    if (value.quantity > 1) {
+      await client.put(`${findData.id_products}`, updateCart)
+        .then((res) => {
+          const findNewData = order.map((i) => i.id === res.data.update_nafa_resto_cart.returning[0].id ? res.data.update_nafa_resto_cart.returning[0] : i)
+          setOrder(findNewData)
+        }
+        )
+    } else {
+      await client.delete(`${value.id}`)
+      const deleteItem = order.filter((item) => item.id !== value.id)
+      setOrder(deleteItem)
+    }
   }
 
   const handleBtnPlus = async (value) => {
