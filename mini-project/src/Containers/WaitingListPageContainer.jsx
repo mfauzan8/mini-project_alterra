@@ -32,7 +32,7 @@ const WaitingListPageContainer = () => {
       });
   }, [loading]);
 
-  return <WaitingListPage handleClickCategory={handleClickCategory} tables={tables} />;
+  return <WaitingListPage handleClickCategory={handleClickCategory} loading={loading} tables={tables} />;
 };
 
 export default WaitingListPageContainer;

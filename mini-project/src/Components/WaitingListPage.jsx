@@ -9,14 +9,14 @@ const WaitingListPage = ({ handleClickCategory, tables, loading }) => {
         <Row style={{ height: '100vh' }}>
           <LeftNavbar handleClickCategory={handleClickCategory} />
           <Col md={6} className="m-5">
-            <h1>Waiting List Order</h1>
+            <h1 className="mb-4">Waiting List Order</h1>
             {loading ? (
-              <Spinner animation="grow" />
+              <Spinner animation="grow" className="d-flex align-items-center" />
             ) : (
               tables.map((table) => (
-                <Accordion key={table.id} defaultActiveKey={table.id} alwaysOpen>
+                <Accordion key={table.id} defaultActiveKey={table.id} alwaysOpen style={{ margin: "5px" }}>
                   <Accordion.Item eventKey="0">
-                    <Accordion.Header>Table No {table.no_table}</Accordion.Header>
+                    <Accordion.Header><strong>Table No {table.no_table}</strong></Accordion.Header>
                     <Accordion.Body>
                       <Card>
                         {table.order.map((singleOrder) => (
@@ -24,7 +24,7 @@ const WaitingListPage = ({ handleClickCategory, tables, loading }) => {
                             Order #{singleOrder.id}
 
                             {singleOrder.products.map((product) =>
-                              <ListGroup.Item>{product.name}</ListGroup.Item>
+                              < ListGroup.Item key={product.id}><strong>{singleOrder.quantity}</strong>  {product.name}</ListGroup.Item>
                             )}
                           </ListGroup>
                         ))}

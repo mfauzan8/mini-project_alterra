@@ -1,9 +1,9 @@
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./Components/HomePage";
 import AllProductPageContainer from "./Containers/AllProductPageContainer";
 import WaitingListPageContainer from "./Containers/WaitingListPageContainer";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

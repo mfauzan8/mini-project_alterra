@@ -1,17 +1,18 @@
-import { Card, Col, Row, Spinner, Form, CardGroup } from "react-bootstrap";
+import { Card, Col, Row, Spinner, Form, InputGroup } from "react-bootstrap";
 
 export const CardProduct = ({ loading, category, handleAddToCart, searchProducts, setSearchWords }) => {
 
   return (
     <>
-      <div className="mt-4 mb-4">
-        <Form.Control type="searchData" placeholder="Search Food or Drink" style={{ width: "50%" }}
-          className="shadow-lg rounded-pill " value={searchProducts} onChange={(ev) => setSearchWords(ev.currentTarget.value)}
+      <InputGroup className="mb-4 mt-4 ">
+        <InputGroup.Text id="iconSearch"><i class="bi bi-search"></i></InputGroup.Text>
+        <Form.Control type="searchData" placeholder="Search Food or Drink" id="searchData"
+          value={searchProducts} onChange={(ev) => setSearchWords(ev.currentTarget.value)}
         />
-      </div>
+      </InputGroup>
       <Row>
-        {loading ? (
-          <Spinner animation="grow" />
+        {loading ? (<center>
+          <Spinner animation="grow" /></center>
         ) : (
           category.map((product) => (
             <Col xl={3} md={12} xs={10} key={product.id_products}>

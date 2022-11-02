@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts, client } from "../api";
 import { setProducts } from "../Features/productReducer";
+import { toast } from "react-toastify"
 import AllProductPage from "../Components/AllProductPage";
 
 const AllProductPageContainer = () => {
@@ -50,6 +51,10 @@ const AllProductPageContainer = () => {
       await client.put(`${findData.id_products}`, updateCart)
         .then((res) => {
           const findNewData = order.map((i) => i.id === res.data.update_nafa_resto_cart.returning[0].id ? res.data.update_nafa_resto_cart.returning[0] : i)
+          toast.info('success update product quantity', {
+            position: "top-center",
+            autoClose: 3000,
+          })
           setOrder(findNewData)
         }
         )
@@ -63,6 +68,10 @@ const AllProductPageContainer = () => {
       };
       await client.post("/", newProduct)
         .then((res) => {
+          toast.success('success add product to cart', {
+            position: "top-center",
+            autoClose: 3000,
+          })
           setOrder((prevState) => [...prevState, res.data.insert_nafa_resto_cart.returning[0]])
         })
     }
@@ -88,7 +97,11 @@ const AllProductPageContainer = () => {
     const idProduct = value.id
     await client.delete(`${idProduct}`)
     const deleteItem = order.filter((item) => item.id !== idProduct)
+    toast.success('success delete product', {
+      autoClose: 3000,
+    })
     setOrder(deleteItem)
+
   }
 
   const handleBtnPlus = async (value) => {
