@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts, client } from "../api";
+import { getProducts, client, getCarts } from "../api";
 import { setProducts } from "../Features/productReducer";
 import { toast } from "react-toastify"
 import AllProductPage from "../Components/AllProductPage";
+import { setCarts } from "../Features/cartReducer";
 
 const AllProductPageContainer = () => {
   const products = useSelector((state) => state.productlist.products);
+  const carts = useSelector((state) => state.cartlist.carts);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState(products);
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState(carts);
   const [searchProducts, setSearchWords] = useState("");
 
 
@@ -18,6 +20,17 @@ const AllProductPageContainer = () => {
     getProducts()
       .then((res) => {
         dispatch(setProducts(res));
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [loading]);
+
+  useEffect(() => {
+    getCarts()
+      .then((res) => {
+        dispatch(setCarts(res));
         setLoading(false);
       })
       .catch((err) => {
