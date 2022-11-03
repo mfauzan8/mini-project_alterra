@@ -5,7 +5,7 @@ export const CardProduct = ({ loading, category, handleAddToCart, searchProducts
   return (
     <>
       <InputGroup className="mb-4 mt-4 ">
-        <InputGroup.Text id="iconSearch"><i class="bi bi-search"></i></InputGroup.Text>
+        <InputGroup.Text id="iconSearch"><i className="bi bi-search"></i></InputGroup.Text>
         <Form.Control type="searchData" placeholder="Search Food or Drink" id="searchData"
           value={searchProducts} onChange={(ev) => setSearchWords(ev.currentTarget.value)}
         />
