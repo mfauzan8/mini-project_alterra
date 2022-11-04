@@ -1,5 +1,6 @@
 import React from "react";
-import { Row, Col, Accordion, Card, ListGroup, Spinner, Container } from "react-bootstrap";
+import { Row, Col, Accordion, Card, ListGroup, Container } from "react-bootstrap";
+import LoadingSvg from "./LoadingSvg";
 import { LeftNavbar } from "./Navbar/LeftNavbar";
 
 const WaitingListPage = ({ handleClickCategory, tables, loading }) => {
@@ -10,8 +11,9 @@ const WaitingListPage = ({ handleClickCategory, tables, loading }) => {
           <LeftNavbar handleClickCategory={handleClickCategory} />
           <Col md={6} className="m-5">
             <h1 className="mb-4">Waiting List Order</h1>
-            {loading ? (
-              <Spinner animation="grow" className="d-flex align-items-center" />
+            {loading ? (<div className="d-flex justify-content-start">
+              <LoadingSvg />
+            </div>
             ) : (
               tables.map((table) => (
                 <Accordion key={table.id} defaultActiveKey={table.id} alwaysOpen style={{ margin: "5px" }}>
@@ -20,7 +22,7 @@ const WaitingListPage = ({ handleClickCategory, tables, loading }) => {
                     <Accordion.Body>
                       <Card>
                         {table.order.map((singleOrder) => (
-                          <ListGroup variant="flush" key={singleOrder.id}>
+                          <ListGroup variant="flush" key={singleOrder.id} style={{ padding: "2px" }}>
                             Order #{singleOrder.id}
 
                             {singleOrder.products.map((product) =>
