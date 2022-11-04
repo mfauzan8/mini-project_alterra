@@ -60,7 +60,7 @@ export const RightNavbar =
           <h3><i className="bi bi-cart-check-fill"></i> Current Order </h3>
         </div>
         <div className="mt-4 mb-4 p-3 pb-0">
-          <Form.Control type="searchData" placeholder="Input Table Number"
+          <Form.Control type="searchData" id="inputTable" placeholder="Input Table Number" style={{ backgroundColor: "#4f0000", color: "white", border: "none" }}
             className="shadow rounded-pill" value={table} onChange={changeSetTable}
           />
         </div>
@@ -87,11 +87,9 @@ export const RightNavbar =
                             <button className="btn-quantity me-1" disabled>{cart.quantity}</button>
                             <button className="btn-cart me-1" onClick={() => handleBtnPlus(cart)}><i className="bi bi-plus"></i></button>
                             <button className="btn-cart" style={{ color: "red" }} onClick={() => deleteById(cart)}><i className="bi bi-trash3-fill"></i></button>
-
                           </h6>
                         </div>
                       </div>
-
                     </Container>
                   ))}
                 </div>
@@ -99,13 +97,21 @@ export const RightNavbar =
             }
           </div>
         </Container>
-
-
         <div className="d-flex flex-column m-2 mt-4">
           <div className="total">
-            <p>Subtotal : Rp.{sumSubTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} </p>
-            <p>Tax : Rp.{sumTax.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</p>
-            <p><strong>Total</strong> : Rp.{sumTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</p>
+            <div className="summary">
+              <p>Subtotal :</p>
+              <p>Rp. {sumSubTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} </p>
+            </div>
+            <div className="summary">
+              <p>Tax 10% :</p>
+              <p>Rp. {sumTax.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</p>
+            </div>
+            <hr className="hrSummary" />
+            <div className="sumTotal">
+              <i>Total :</i>
+              <p>Rp. {sumTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</p>
+            </div>
           </div>
           <button className="btn-total" onClick={handleOrder}>Order Now</button>
         </div>
