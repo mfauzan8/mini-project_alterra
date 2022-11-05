@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Accordion, Card, ListGroup, Container } from "react-bootstrap";
+import { Row, Col, Accordion, ListGroup, Container } from "react-bootstrap";
 import LoadingSvg from "./LoadingSvg";
 import { LeftNavbar } from "./Navbar/LeftNavbar";
 

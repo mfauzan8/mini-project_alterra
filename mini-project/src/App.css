@@ -218,4 +218,7 @@ hr.line {
     margin: 5px;
     margin-top: 30px;
   }
+  #cartImage {
+    width: 60%;
+  }
 }

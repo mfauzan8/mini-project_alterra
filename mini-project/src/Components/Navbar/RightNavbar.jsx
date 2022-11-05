@@ -73,10 +73,10 @@ export const RightNavbar =
                   {cart.product.map((item) => (
                     <Container key={item.id_products} fluid>
                       <div className="d-flex flex-row align-items-center" >
-                        <div className="col-md-4 xs-3">
-                          <Image src={"Assets/img/" + item.image_products} className="img-fluid rounded border border-2" />
+                        <div className="col-md-4 sm-2">
+                          <Image id="cartImage" src={"Assets/img/" + item.image_products} className="img-fluid rounded border border-2" />
                         </div>
-                        <div className="col ms-3">
+                        <div className="col ms-3 ">
                           <h6>
                             <span>{item.name}</span>
                           </h6>
