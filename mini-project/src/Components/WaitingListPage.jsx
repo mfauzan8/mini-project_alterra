@@ -9,7 +9,7 @@ const WaitingListPage = ({ handleClickCategory, tables, loading }) => {
       <Container fluid>
         <Row style={{ height: '100vh' }}>
           <LeftNavbar handleClickCategory={handleClickCategory} />
-          <Col md={6} className="m-5">
+          <Col md={6} xs={9} id="ColWaitingList">
             <h1 className="mb-4">Waiting List Order</h1>
             {loading ? (<div className="d-flex justify-content-start">
               <LoadingSvg />
@@ -20,17 +20,15 @@ const WaitingListPage = ({ handleClickCategory, tables, loading }) => {
                   <Accordion.Item eventKey="0">
                     <Accordion.Header><strong>Table No {table.no_table}</strong></Accordion.Header>
                     <Accordion.Body>
-                      <Card>
-                        {table.order.map((singleOrder) => (
-                          <ListGroup variant="flush" key={singleOrder.id} style={{ padding: "2px" }}>
-                            Order #{singleOrder.id}
+                      {table.order.map((singleOrder) => (
+                        <ListGroup variant="flush" key={singleOrder.id} style={{ padding: "2px" }}>
+                          Order #{singleOrder.id}
 
-                            {singleOrder.products.map((product) =>
-                              < ListGroup.Item key={product.id}><strong>{singleOrder.quantity}</strong>  {product.name}</ListGroup.Item>
-                            )}
-                          </ListGroup>
-                        ))}
-                      </Card>
+                          {singleOrder.products.map((product) =>
+                            < ListGroup.Item key={product.id}><strong>{singleOrder.quantity}</strong>  {product.name}</ListGroup.Item>
+                          )}
+                        </ListGroup>
+                      ))}
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>

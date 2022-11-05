@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <div className="home">
       <Stack direction="horizontal">
-        <Stack>
+        <Stack className="textHome">
           <Image src="/Assets/img/LogoHome.png" style={{ width: "18%", padding: "30px" }} />
           <Container>
             <Col md={8} style={{ padding: "3rem" }}>

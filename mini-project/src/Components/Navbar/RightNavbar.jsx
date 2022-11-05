@@ -62,7 +62,7 @@ export const RightNavbar =
         <div className="mt-4 mb-4 p-3 pb-0">
           <Form.Control type="searchData" id="inputTable" placeholder="Input Table Number" style={{ backgroundColor: "#4f0000", color: "white", border: "none" }}
             className="shadow rounded-pill" value={table} onChange={changeSetTable}
-          />
+            required />
         </div>
 
         <Container style={{ height: "49vh" }}>
