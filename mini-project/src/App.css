@@ -4,6 +4,9 @@
   height: 100vh;
   width: 100%;
 }
+.textHome {
+  z-index: 2;
+}
 .TextHeader {
   font-family: "Walter Turncoat";
   font-style: normal;
@@ -13,6 +16,10 @@
   letter-spacing: 0.06em;
   color: #ffffff;
 }
+.TextHeader:hover {
+  text-shadow: 5px 5px 5px rgb(183, 27, 27);
+}
+
 span {
   color: #ff4f4f;
 }
@@ -47,17 +54,18 @@ hr.line {
   border-top: 4px solid #de7979;
 }
 
+.left-navbar {
+  box-shadow: 2px 0px 8px 0px rgba(130, 33, 33, 0.84);
+  -webkit-box-shadow: 2px 0px 8px 0px rgba(130, 33, 33, 0.84);
+  -moz-box-shadow: 2px 0px 8px 0px rgba(130, 33, 33, 0.84);
+}
+
 /* Right Navbar */
 .btn-cart {
   border-radius: 5px;
   margin-bottom: 0;
 }
 
-.left-navbar {
-  box-shadow: 2px 0px 8px 0px rgba(130, 33, 33, 0.84);
-  -webkit-box-shadow: 2px 0px 8px 0px rgba(130, 33, 33, 0.84);
-  -moz-box-shadow: 2px 0px 8px 0px rgba(130, 33, 33, 0.84);
-}
 .btn-quantity {
   color: #fffefe;
   background-color: rgb(98, 32, 32);
@@ -154,4 +162,63 @@ hr.line {
 #productDetail {
   font-size: 13px;
   line-height: 16px;
+}
+
+/* waiting list */
+#ColWaitingList {
+  margin: 50px;
+}
+
+/* Screen Hp */
+@media screen and (max-width: 992px) {
+  .TextHeader {
+    font-size: 62px;
+    letter-spacing: 0.03em;
+    text-shadow: 5px 5px 5px rgb(29, 29, 29);
+  }
+  .TextSubHeader {
+    padding-top: 5px;
+    padding-bottom: 15px;
+    font-weight: 400;
+    font-size: 15px;
+    text-shadow: 5px 5px 10px rgb(181, 60, 60);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .TextHeader {
+    font-size: 72px;
+  }
+
+  .TextSubHeader {
+    padding-top: 5px;
+    padding-bottom: 15px;
+    font-weight: 400;
+    font-size: 15px;
+    text-shadow: 5px 5px 10px rgb(181, 60, 60);
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .TextHeader {
+    font-size: 55px;
+    letter-spacing: 0.02em;
+  }
+
+  .TextSubHeader {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    letter-spacing: 0.03em;
+    font-weight: 400;
+    font-size: 15px;
+    text-shadow: 5px 5px 10px rgb(255, 32, 32);
+  }
+
+  #ColWaitingList {
+    margin: 5px;
+    margin-top: 30px;
+  }
+  #cartImage {
+    width: 60%;
+  }
 }
