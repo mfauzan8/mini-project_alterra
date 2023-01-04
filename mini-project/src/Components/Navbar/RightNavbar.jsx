@@ -43,7 +43,6 @@ export const RightNavbar =
         )
 
       const dataOrder = order.map((o) => ({ ...o, no_table: table }))
-      console.log(dataOrder)
       const dataOrderList = {
         objects: dataOrder
       }
