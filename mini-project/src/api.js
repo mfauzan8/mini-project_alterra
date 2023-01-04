@@ -18,11 +18,11 @@ export const getCategory = async () => {
 };
 
 export const getCarts = async () => {
-  const response = await client.get("/");
+  const response = await client.get("/cart");
   return response.data.nafa_resto_cart;
 };
 
 export const getTableOrder = async () => {
-  const response = await client.get("/");
+  const response = await client.get("/table");
   return response.data.nafa_resto_table;
 };

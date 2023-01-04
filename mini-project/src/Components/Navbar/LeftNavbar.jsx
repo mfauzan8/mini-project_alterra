@@ -10,8 +10,8 @@ export const LeftNavbar = ({ handleClickCategory }) => {
         </Link>
         <hr className="line" />
         <Image src="/Assets/icons/all.png" name="All" style={{ width: "100%", padding: "10px 20px" }} onClick={(e) => handleClickCategory(e.target.name)} />
-        <Image src="/Assets/icons/food.png" name="1" style={{ width: "100%", padding: "10px 15px" }} onClick={(e) => handleClickCategory(e.target.name)} />
-        <Image src="/Assets/icons/drink.png" name="2" style={{ width: "100%", padding: "10px 15px" }} onClick={(e) => handleClickCategory(e.target.name)} />
+        <Image src="/Assets/icons/food.png" name="food" style={{ width: "100%", padding: "10px 15px" }} onClick={(e) => handleClickCategory(e.target.name)} />
+        <Image src="/Assets/icons/drink.png" name="drink" style={{ width: "100%", padding: "10px 15px" }} onClick={(e) => handleClickCategory(e.target.name)} />
         <Link to="/waiting-list">
           <Image src="/Assets/icons/wait.png" style={{ width: "100%", padding: "20px 15px" }} />
         </Link>
