@@ -25,7 +25,7 @@ const WaitingListPage = ({ handleClickCategory, tables, loading }) => {
                           Order #{singleOrder.id}
 
                           {singleOrder.products.map((product) =>
-                            < ListGroup.Item key={product.id}><strong>{singleOrder.quantity}</strong>  {product.name}</ListGroup.Item>
+                            < ListGroup.Item key={product.id_products}><strong>{singleOrder.quantity}</strong>  {product.name}</ListGroup.Item>
                           )}
                         </ListGroup>
                       ))}

@@ -15,7 +15,6 @@ const AllProductPageContainer = () => {
   const [order, setOrder] = useState(carts);
   const [searchProducts, setSearchWords] = useState("");
 
-
   useEffect(() => {
     getProducts()
       .then((res) => {
@@ -27,20 +26,9 @@ const AllProductPageContainer = () => {
       });
   }, [loading]);
 
-  useEffect(() => {
-    getCarts()
-      .then((res) => {
-        dispatch(setCarts(res));
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [loading]);
-
   const handleClickCategory = (e) => {
     if (e !== "All") {
-      let productFilter = products.filter((object) => object.id_categories === +e);
+      let productFilter = products.filter((object) => object.categories.name_categories === e);
       setCategory(productFilter);
     } else {
       setCategory(products);
@@ -52,8 +40,6 @@ const AllProductPageContainer = () => {
     if (productLocation >= 0) {
       let findData = order.find(({ id_products }) => id_products === value.id_products);
       const updateCart = {
-        id: order.id,
-        id_products: findData.id_products,
         quantity: findData.quantity + 1,
         subtotal: value.price * (findData.quantity + 1),
         tax: value.price * (findData.quantity + 1) * 0.1,
@@ -61,7 +47,7 @@ const AllProductPageContainer = () => {
           + (value.price * (findData.quantity + 1))
       }
 
-      await client.put(`${findData.id_products}`, updateCart)
+      await client.put(`${findData.id}`, updateCart)
         .then((res) => {
           const findNewData = order.map((i) => i.id === res.data.update_nafa_resto_cart.returning[0].id ? res.data.update_nafa_resto_cart.returning[0] : i)
           toast.info('success update product quantity', {
@@ -117,35 +103,34 @@ const AllProductPageContainer = () => {
   }
 
   const handleBtnPlus = async (value) => {
-    let findData = order.find(({ id_products }) => id_products === value.id_products);
     const updateCart = {
-      id_products: findData.id_products,
-      quantity: findData.quantity + 1,
-      subtotal: findData.subtotal / findData.quantity * (findData.quantity + 1),
-      tax: findData.tax / findData.quantity * (findData.quantity + 1),
-      total: findData.total / findData.quantity * (findData.quantity + 1)
+      quantity: value.quantity + 1,
+      subtotal: value.subtotal + value.product[0].price,
+      tax: value.tax / value.quantity * (value.quantity + 1),
+      total: value.total / value.quantity * (value.quantity + 1)
     }
-    await client.put(`${findData.id_products}`, updateCart)
+    await client.put(`${value.id}`, updateCart)
       .then((res) => {
-        const findNewData = order.map((i) => i.id === res.data.update_nafa_resto_cart.returning[0].id ? res.data.update_nafa_resto_cart.returning[0] : i)
+        const findNewData = order.map((item) => item.id === res.data.update_nafa_resto_cart.returning[0].id ? res.data.update_nafa_resto_cart.returning[0] : item)
         setOrder(findNewData)
+        toast.success('success update quantity', {
+          autoClose: 3000,
+        })
       }
       )
   }
 
   const handleBtnMinus = async (value) => {
-    let findData = order.find(({ id_products }) => id_products === value.id_products);
     const updateCart = {
-      id_products: findData.id_products,
-      quantity: findData.quantity - 1,
-      subtotal: findData.subtotal / findData.quantity * (findData.quantity - 1),
-      tax: findData.tax / findData.quantity * (findData.quantity - 1),
-      total: findData.total / findData.quantity * (findData.quantity - 1)
+      quantity: value.quantity - 1,
+      subtotal: value.subtotal - value.product[0].price,
+      tax: value.tax / value.quantity * (value.quantity - 1),
+      total: value.total / value.quantity * (value.quantity - 1)
     }
     if (value.quantity > 1) {
-      await client.put(`${findData.id_products}`, updateCart)
+      await client.put(`${value.id}`, updateCart)
         .then((res) => {
-          const findNewData = order.map((i) => i.id === res.data.update_nafa_resto_cart.returning[0].id ? res.data.update_nafa_resto_cart.returning[0] : i)
+          const findNewData = order.map((item) => item.id === res.data.update_nafa_resto_cart.returning[0].id ? res.data.update_nafa_resto_cart.returning[0] : item)
           setOrder(findNewData)
         }
         )
@@ -155,6 +140,17 @@ const AllProductPageContainer = () => {
       setOrder(deleteItem)
     }
   }
+
+  useEffect(() => {
+    getCarts()
+      .then((res) => {
+        dispatch(setCarts(res));
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [loading]);
 
   return <AllProductPage
     loading={loading}
