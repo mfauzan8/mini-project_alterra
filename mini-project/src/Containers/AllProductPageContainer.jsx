@@ -5,6 +5,7 @@ import { setProducts } from "../Features/productReducer";
 import { toast } from "react-toastify"
 import AllProductPage from "../Components/AllProductPage";
 import { setCarts } from "../Features/cartReducer";
+import { useLocation } from "react-router-dom";
 
 const AllProductPageContainer = () => {
   const products = useSelector((state) => state.productlist.products);
@@ -13,6 +14,7 @@ const AllProductPageContainer = () => {
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState(products);
   const [order, setOrder] = useState(carts);
+  const [active, setActive] = useState("All")
   const [searchProducts, setSearchWords] = useState("");
 
   useEffect(() => {
@@ -29,8 +31,10 @@ const AllProductPageContainer = () => {
   const handleClickCategory = (e) => {
     if (e !== "All") {
       let productFilter = products.filter((object) => object.categories.name_categories === e);
+      setActive(e)
       setCategory(productFilter);
     } else {
+      setActive(e)
       setCategory(products);
     }
   };
@@ -159,6 +163,7 @@ const AllProductPageContainer = () => {
     handleAddToCart={handleAddToCart}
     order={order}
     setOrder={setOrder}
+    active={active}
     searchProducts={searchProducts}
     setSearchWords={setSearchWords}
     deleteById={deleteById}

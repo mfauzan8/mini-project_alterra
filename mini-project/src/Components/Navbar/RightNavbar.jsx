@@ -112,7 +112,8 @@ export const RightNavbar =
               <p>Rp. {sumTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</p>
             </div>
           </div>
-          <button className="btn-total" onClick={handleOrder}>Order Now</button>
+          <button className="btn-total" onClick={handleOrder}>Order Now
+            <i className="ms-2 bi bi-bag-check"></i></button>
         </div>
       </div >
     );
