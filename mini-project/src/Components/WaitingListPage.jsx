@@ -16,7 +16,7 @@ const WaitingListPage = ({ handleClickCategory, tables, loading }) => {
             </div>
             ) : (
               tables.map((table) => (
-                <Accordion key={table.id} defaultActiveKey={table.id} alwaysOpen style={{ margin: "5px" }}>
+                <Accordion className="mb-2" key={table.id} defaultActiveKey={table.id} alwaysOpen style={{ margin: "5px" }}>
                   <Accordion.Item eventKey="0">
                     <Accordion.Header><strong>Table No {table.no_table}</strong></Accordion.Header>
                     <Accordion.Body>

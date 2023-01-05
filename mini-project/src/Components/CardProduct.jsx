@@ -5,12 +5,16 @@ export const CardProduct = ({ loading, category, handleAddToCart, searchProducts
 
   return (
     <>
-      <InputGroup className="mb-4 mt-4 ">
+      <form className="input-search">
+        <input type="search" placeholder="Search Food or Drink...." required value={searchProducts} onChange={(ev) => setSearchWords(ev.currentTarget.value)} />
+        <i className="bi bi-search"></i>
+      </form>
+      {/* <InputGroup className="mb-4 mt-4 ">
         <InputGroup.Text id="iconSearch"><i className="bi bi-search"></i></InputGroup.Text>
-        <Form.Control type="searchData" placeholder="Search Food or Drink" id="searchData"
-          value={searchProducts} onChange={(ev) => setSearchWords(ev.currentTarget.value)}
+        <input className="input-search w-50" type="searchData" placeholder="Search Food or Drink" id="searchData"
+          
         />
-      </InputGroup>
+      </InputGroup> */}
       <Row>
         {loading ? (
           <LoadingSvg />

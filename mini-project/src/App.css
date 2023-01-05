@@ -16,9 +16,6 @@
   letter-spacing: 0.06em;
   color: #ffffff;
 }
-.TextHeader:hover {
-  text-shadow: 5px 5px 5px rgb(183, 27, 27);
-}
 
 span {
   color: #ff4f4f;
@@ -34,24 +31,136 @@ span {
   letter-spacing: 0.15em;
   color: #ffffff;
 }
-.btnOurmenu {
+.home button {
   background-color: white;
   border: none;
-  border-radius: 15px;
-  color: #120200;
+  border-radius: 8px;
+  color: var(--color);
+  transition: 0.25s;
   font-weight: bold;
   padding: 7px 20px;
 }
-.btnOurmenu:hover {
-  color: #ff4f4f;
-  opacity: 0.9;
+.btnOurmenu {
+  --color: #000000;
+  --hover: #8a5050;
+}
+.btnOurmenu:hover,
+.btnOurmenu:focus {
+  box-shadow: inset 10em 0 0 0 var(--hover);
+  color: #fffefe;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
 }
 /* End Home */
 
+/* Input */
+form {
+  position: relative;
+  top: 6%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s;
+  width: 50px;
+  height: 50px;
+  background: #4f0000;
+  box-sizing: border-box;
+  border-radius: 25px;
+  border: 4px solid #4f0000;
+  padding: 5px;
+  margin-bottom: 34px;
+}
+.input-search input::placeholder {
+  color: rgb(211, 211, 211);
+}
+.input-search input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 42.5px;
+  line-height: 30px;
+  outline: 1px solid #fff;
+  border: 0;
+  display: none;
+  font-size: 1em;
+  border-radius: 20px;
+  padding: 0 20px;
+  background-color: #4f0000;
+  color: #ffffff;
+}
+.bi-search {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 42.5px;
+  height: 42.5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.1em;
+  transition: all 1s;
+}
+form:hover,
+form:valid {
+  width: 50%;
+  cursor: pointer;
+}
+form:hover input,
+form:valid input {
+  display: block;
+}
+form:hover .bi,
+form:valid .bi {
+  background: #ffffff;
+  color: #4f0000;
+}
+/* End input */
+
+/* Button Order */
+
+/* End Button Order */
+
+.icon-sidebar {
+  width: 100%;
+  padding: 0px 15px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.active {
+  border-right: 4px solid #782f2c;
+}
+.icon-waiting {
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.icon {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+a.actived {
+  border-right: 4px solid #782f2c;
+  width: 100%;
+  align-self: flex-end;
+}
+.deactived {
+  width: 100%;
+  align-self: flex-end;
+}
 /* Left Navbar */
 
 hr.line {
   border-top: 4px solid #de7979;
+  margin-bottom: 0;
 }
 
 .left-navbar {
@@ -93,9 +202,16 @@ hr.line {
   font-style: italic;
   font-weight: bold;
 }
+.btn-total i {
+  visibility: hidden;
+}
+.btn-total:hover i {
+  visibility: visible;
+  transition: all 1.5s 0s ease-out;
+}
 
 #inputTable::placeholder {
-  color: white;
+  color: rgb(211, 211, 211);
 }
 
 .summary {
@@ -130,15 +246,7 @@ hr.line {
 }
 
 /* content */
-#iconSearch {
-  background-color: transparent;
-  padding: 10px;
-  border-radius: 25px 0 0 25px;
-}
-#searchData {
-  border-radius: 0 25px 25px 0;
-  border-left: none;
-}
+
 #cardProduct {
   padding: 5px;
   border: none;
@@ -221,4 +329,25 @@ hr.line {
   #cartImage {
     width: 60%;
   }
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a1a1a1;
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4c4c4c;
 }
